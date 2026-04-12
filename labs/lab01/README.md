@@ -28,6 +28,7 @@
 
 <details>
 <summary><b>leaf-01</b> (нажмите, чтобы раскрыть)</summary>
+  ```
   hostname leaf-01
 !
 interface Ethernet7
@@ -110,7 +111,7 @@ interface Ethernet3
    no switchport
    ip address 10.10.10.11/31
 </details>
-
+```
 ### Проверка связности
 spine-01#sh ip int br
                                                                         Address
