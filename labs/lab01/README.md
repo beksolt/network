@@ -136,6 +136,7 @@ interface Ethernet3
 
 </details>
 ### Проверка связности
+
 ```cisco
 spine-01#sh ip int br
                                                                         Address
@@ -223,6 +224,5 @@ PING 10.10.10.10 (10.10.10.10) 72(100) bytes of data.
 --- 10.10.10.10 ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 12ms
 rtt min/avg/max/mdev = 0.584/1.083/2.801/0.860 ms, ipg/ewma 2.987/1.908 ms
-
 ```
 
