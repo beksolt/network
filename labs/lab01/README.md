@@ -13,20 +13,20 @@
 
 ### ip план
 
-| Устройство | Интерфейс | IP-адрес            | Дескрипшен                       |
-|------------|-----------|---------------------|----------------------------------|
-| leaf-01    | eth7      | 10.10.10.0/31       | spine-01_et01                    |
-| leaf-01    | eth8      | 10.10.10.2/31       | spine-02_et01                    |
-| leaf-02    | eth7      | 10.10.10.4/31       | spine-01_et02                    |
-| leaf-02    | eth8      | 10.10.10.6/31       | spine-02_et02                    |
-| leaf-03    | eth7      | 10.10.10.8/31       | spine-01_et03                    |
-| leaf-03    | eth8      | 10.10.10.10/31      | spine-02_et03                    |
-| spine-01   | eth1      | 10.10.10.1/31       | leaf-01_et7                      |
-| spine-01   | eth2      | 10.10.10.5/31       | leaf-02_et7                      |
-| spine-01   | eth3      | 10.10.10.9/31       | leaf-03_et7                      |
-| spine-02   | eth1      | 10.10.10.3/31       | leaf-01_et8                      |
-| spine-02   | eth2      | 10.10.10.7/31       | leaf-02_et8                      |
-| spine-02   | eth3      | 10.10.10.11/31      | leaf-03_et8                      |
+| Устройство | Интерфейс | IP-адрес       | Loopback IP    | Дескрипшен                       |
+|------------|-----------|----------------|----------------|----------------------------------|
+| leaf-01    | eth7      | 10.10.10.0/31  | 10.0.0.1/32    | spine-01_et01                    |
+| leaf-01    | eth8      | 10.10.10.2/31  | 10.0.0.1/32    | spine-02_et01                    |
+| leaf-02    | eth7      | 10.10.10.4/31  | 10.0.0.2/32    | spine-01_et02                    |
+| leaf-02    | eth8      | 10.10.10.6/31  | 10.0.0.2/32    | spine-02_et02                    |
+| leaf-03    | eth7      | 10.10.10.8/31  | 10.0.0.3/32    | spine-01_et03                    |
+| leaf-03    | eth8      | 10.10.10.10/31 | 10.0.0.3/32    | spine-02_et03                    |
+| spine-01   | eth1      | 10.10.10.1/31  | 10.0.0.4/32    | leaf-01_et7                      |
+| spine-01   | eth2      | 10.10.10.5/31  | 10.0.0.4/32    | leaf-02_et7                      |
+| spine-01   | eth3      | 10.10.10.9/31  | 10.0.0.4/32    | leaf-03_et7                      |
+| spine-02   | eth1      | 10.10.10.3/31  | 10.0.0.5/32    | leaf-01_et8                      |
+| spine-02   | eth2      | 10.10.10.7/31  | 10.0.0.5/32    | leaf-02_et8                      |
+| spine-02   | eth3      | 10.10.10.11/31 | 10.0.0.5/32    | leaf-03_et8                      |
 
 
 ### Настройки устройств
@@ -47,6 +47,8 @@ interface Ethernet8
  no switchport
  ip address 10.10.10.2/31
 !
+interface Loopback0
+   ip address 10.0.0.1/32
 ```
 
 </details>
@@ -67,6 +69,8 @@ interface Ethernet8
  no switchport
  ip address 10.10.10.6/31
 !
+interface Loopback0
+   ip address 10.0.0.2/32
 ```
 
 </details>
@@ -87,6 +91,8 @@ interface Ethernet8
  no switchport
  ip address 10.10.10.10/31
 !
+interface Loopback0
+   ip address 10.0.0.3/32
 ```
 
 </details>
@@ -95,7 +101,7 @@ interface Ethernet8
 <summary><b>spine-01</b> (нажмите, чтобы раскрыть)</summary>
 
 ```cisco
- spine-01
+hostname spine-01
 !
 interface Ethernet1
  description leaf-01_et7
@@ -112,6 +118,8 @@ interface Ethernet3
  no switchport
  ip address 10.10.10.9/31
 !
+interface Loopback0
+   ip address 10.0.0.4/32
 ```
 
 </details>
@@ -137,6 +145,8 @@ interface Ethernet3
  no switchport
  ip address 10.10.10.11/31
 !
+interface Loopback0
+   ip address 10.0.0.5/32
 ```
 
 </details>
