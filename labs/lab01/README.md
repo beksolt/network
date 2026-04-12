@@ -28,90 +28,113 @@
 
 <details>
 <summary><b>leaf-01</b> (нажмите, чтобы раскрыть)</summary>
-  ```
-  hostname leaf-01
+
+```cisco
+hostname leaf-01
 !
 interface Ethernet7
-   description spine-01_et01
-   no switchport
-   ip address 10.10.10.0/31
+ description spine-01_et01
+ no switchport
+ ip address 10.10.10.0/31
 !
 interface Ethernet8
-   description spine-02_et01
-   no switchport
-   ip address 10.10.10.2/31
+ description spine-02_et01
+ no switchport
+ ip address 10.10.10.2/31
+!
+```
+
 </details>
 
 <details>
 <summary><b>leaf-02</b> (нажмите, чтобы раскрыть)</summary>
-  hostname leaf-02
+
+```cisco
+hostname leaf-02
 !
 interface Ethernet7
-   description spine-01_et02
-   no switchport
-   ip address 10.10.10.4/31
+ description spine-01_et02
+ no switchport
+ ip address 10.10.10.4/31
 !
 interface Ethernet8
-   description spine-02_et02
-   no switchport
-   ip address 10.10.10.6/31
+ description spine-02_et02
+ no switchport
+ ip address 10.10.10.6/31
+!
+```
+
 </details>
 
 <details>
 <summary><b>leaf-03</b> (нажмите, чтобы раскрыть)</summary>
-  hostname leaf-03
+
+```cisco
+hostname leaf-03
 !
 interface Ethernet7
-   description spine-01_et03
-   no switchport
-   ip address 10.10.10.8/31
+ description spine-01_et03
+ no switchport
+ ip address 10.10.10.8/31
 !
 interface Ethernet8
-   description spine-02_et03
-   no switchport
-   ip address 10.10.10.10/31
-   </details>
+ description spine-02_et03
+ no switchport
+ ip address 10.10.10.10/31
+!
+```
+
+</details>
 
 <details>
 <summary><b>spine-01</b> (нажмите, чтобы раскрыть)</summary>
-  hostname spine-01
+
+```cisco
+hostname spine-01
 !
 interface Ethernet1
-   description leaf-01_et7
-   no switchport
-   ip address 10.10.10.1/31
+ description leaf-01_et7
+ no switchport
+ ip address 10.10.10.1/31
 !
 interface Ethernet2
-   description leaf-02_et7
-   no switchport
-   ip address 10.10.10.5/31
+ description leaf-02_et7
+ no switchport
+ ip address 10.10.10.5/31
 !
 interface Ethernet3
-   description leaf-03_et7
-   no switchport
-   ip address 10.10.10.9/31
+ description leaf-03_et7
+ no switchport
+ ip address 10.10.10.9/31
+!
+```
+
 </details>
 
 <details>
 <summary><b>spine-02</b> (нажмите, чтобы раскрыть)</summary>
-  hostname spine-02
+
+```cisco
+hostname spine-02
 !
 interface Ethernet1
-   description leaf-01_et8
-   no switchport
-   ip address 10.10.10.3/31
+ description leaf-01_et8
+ no switchport
+ ip address 10.10.10.3/31
 !
 interface Ethernet2
-   description leaf-02_et8
-   no switchport
-   ip address 10.10.10.7/31
+ description leaf-02_et8
+ no switchport
+ ip address 10.10.10.7/31
 !
 interface Ethernet3
-   description leaf-03_et8
-   no switchport
-   ip address 10.10.10.11/31
-</details>
+ description leaf-03_et8
+ no switchport
+ ip address 10.10.10.11/31
+!
 ```
+
+</details>
 ### Проверка связности
 spine-01#sh ip int br
                                                                         Address
