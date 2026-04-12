@@ -135,6 +135,7 @@ interface Ethernet3
 ```
 
 </details>
+
 ### Проверка связности
 
 ```cisco
