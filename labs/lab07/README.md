@@ -188,6 +188,8 @@ router ospf 1
    max-lsa 12000
 !
 end
+```
+
 </details>
 
 <details>
@@ -348,6 +350,8 @@ router ospf 1
    max-lsa 12000
 !
 end
+```
+
 </details>
 
 <details>
