@@ -378,6 +378,7 @@ network:
         mii-monitor-interval: 100
 end
 ```
+
 </details>
 
 ### Проверка связности
