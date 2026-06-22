@@ -376,6 +376,8 @@ network:
         mode: 802.3ad
         lacp-rate: fast
         mii-monitor-interval: 100
+end
+```
 </details>
 
 ### Проверка связности
