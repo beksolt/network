@@ -77,17 +77,17 @@ WAN:
 
 ```bash
 spine-01#show bgp evpn summary
-
 BGP summary information for VRF default
 Router identifier 10.1.2.1, local AS number 65000
 Neighbor Status Codes: m - Under maintenance
   Description              Neighbor    V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
-  Leaf-01                  10.101.1.0  4 65001          67343     67358    0    0    1d23h Estab   6      6
-  Leaf-02                  10.101.1.2  4 65002          67375     67376    0    0    1d23h Estab   6      6
-  Leaf-03                  10.101.1.4  4 65003          67368     67398    0    0    1d23h Estab   7      7
-  Leaf-04                  10.101.1.6  4 65004          67382     67324    0    0    1d23h Estab   9      9
-  bgw-01                   10.101.1.8  4 65005          67347     67385    0    0    1d23h Estab   16     16
-  bgw-02                   10.101.1.10 4 65006          67463     67426    0    0    1d23h Estab   16     16
+  Leaf-01                  10.101.1.0  4 65001           1754      1755    0    0 01:14:10 Estab   6      6
+  Leaf-02                  10.101.1.2  4 65002           1751      1746    0    0 01:14:10 Estab   6      6
+  Leaf-03                  10.101.1.4  4 65003           1183      1179    0    0 00:49:37 Estab   7      7
+  Leaf-04                  10.101.1.6  4 65004           1755      1752    0    0 01:14:12 Estab   9      9
+  bgw-01                   10.101.1.8  4 65005           1728      1726    0    0 01:13:21 Estab   8      8
+  bgw-02                   10.101.1.10 4 65006           1265      1218    0    0 00:50:03 Estab   2      2
+
 Результат: 6 соседей (leaf-01..04, bgw-01/02) в Estab.
 
 ###  2) BGP в ten-1/ten-2 на BGW
@@ -97,7 +97,7 @@ BGP summary information for VRF ten-1
 Router identifier 100.1.1.0, local AS number 65005
 Neighbor Status Codes: m - Under maintenance
   Description              Neighbor  V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
-  Mikrotik-RT1-ten-1       100.1.1.1 4 65100          56563     66365    0    0 00:04:22 Estab   8      8
+  Mikrotik-RT1-ten-1       100.1.1.1 4 65100          56563     66365    0    0 01:15:00 Estab   8      8
 
 bgw-01#
 bgw-01#
@@ -106,7 +106,7 @@ BGP summary information for VRF ten-2
 Router identifier 100.1.2.0, local AS number 65005
 Neighbor Status Codes: m - Under maintenance
   Description              Neighbor  V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
-  Mikrotik-RT1-ten-2       100.1.2.1 4 65100             98       113    0    0 00:04:31 Estab   8      8
+  Mikrotik-RT1-ten-2       100.1.2.1 4 65100             98       113    0    0 01:15:42 Estab   8      8
 
 Результат: все соседи с Mikrotik в Estab
 
@@ -146,16 +146,16 @@ Gateway of last resort:
  B E      100.2.2.0/31 [200/0]
            via 100.1.1.1, Ethernet3.10
  B E      192.168.10.0/24 [200/0]
-           via VTEP 10.1.1.2 VNI 50001 router-mac 50:00:00:cb:38:c2 local-interface Vxlan1
-           via VTEP 10.1.1.1 VNI 50001 router-mac 50:00:00:d7:ee:0b local-interface Vxlan1
+           via VTEP 10.1.1.2 VNI 50001 router-mac 00:50:79:66:68:1a local-interface Vxlan1
+           via VTEP 10.1.1.1 VNI 50001 router-mac 00:1c:73:00:00:99 local-interface Vxlan1
  B E      192.168.20.0/24 [200/0]
-           via VTEP 10.1.1.3 VNI 50001 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+           via VTEP 10.1.1.3 VNI 50001 router-mac 00:50:79:66:68:1b local-interface Vxlan1
            via VTEP 10.1.1.4 VNI 50001 router-mac 50:00:00:03:37:66 local-interface Vxlan1
  B E      192.168.30.0/24 [200/0]
-           via VTEP 10.1.1.3 VNI 50001 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+           via VTEP 10.1.1.3 VNI 50001 router-mac 00:50:79:66:68:1b local-interface Vxlan1
            via VTEP 10.1.1.4 VNI 50001 router-mac 50:00:00:03:37:66 local-interface Vxlan1
  B E      192.168.40.0/24 [200/0]
-           via VTEP 10.1.1.3 VNI 50001 router-mac 50:00:00:d5:5d:c0 local-interface Vxlan1
+           via VTEP 10.1.1.3 VNI 50001 router-mac 00:50:79:66:68:1b local-interface Vxlan1
            via VTEP 10.1.1.4 VNI 50001 router-mac 50:00:00:03:37:66 local-interface Vxlan1
 
 bgw-01#
@@ -269,28 +269,28 @@ Flags: E - established
      local.address=100.1.2.1 .as=65100 .id=10.1.3.1 .cluster-id=10.1.3.1 .capabilities=mp,rr,gr,as4 .afi=ip .messages=17 .bytes=472 .eor="" 
      output.procid=20 .default-originate=always 
      input.procid=20 ebgp 
-     hold-time=9s keepalive-time=3s uptime=39s440ms last-started=2026-03-05 20:21:00 prefix-count=1 
+     hold-time=9s keepalive-time=3s uptime=1h20m32s70ms last-started=2026-07-03 14:37:31 prefix-count=1 
 
  1 E name="to-bgw-01-t1-1" 
      remote.address=100.1.1.0 .as=65005 .id=100.1.1.0 .capabilities=mp,rr,gr,as4,ap,err .afi=ip .hold-time=9s .messages=23 .bytes=596 .gr-time=300 .eor=ip 
      local.address=100.1.1.1 .as=65100 .id=10.1.3.1 .cluster-id=10.1.3.1 .capabilities=mp,rr,gr,as4 .afi=ip .messages=15 .bytes=344 .eor="" 
      output.procid=21 .default-originate=always 
      input.procid=21 ebgp 
-     hold-time=9s keepalive-time=3s uptime=39s440ms last-started=2026-03-05 20:21:00 prefix-count=5 
+     hold-time=9s keepalive-time=3s uptime=1h20m30s60ms last-started=2026-07-03 14:37:31 prefix-count=5 
 
  2 E name="to-bgw-02-t2-1" 
      remote.address=100.2.2.0 .as=65006 .id=100.2.2.0 .capabilities=mp,rr,gr,as4,ap,err .afi=ip .hold-time=9s .messages=20 .bytes=539 .gr-time=300 .eor="" 
      local.address=100.2.2.1 .as=65100 .id=10.1.3.1 .cluster-id=10.1.3.1 .capabilities=mp,rr,gr,as4 .afi=ip .messages=17 .bytes=472 .eor="" 
      output.procid=22 .default-originate=always 
      input.procid=22 ebgp 
-     hold-time=9s keepalive-time=3s uptime=39s360ms last-started=2026-03-05 20:21:00 prefix-count=1 
+     hold-time=9s keepalive-time=3s uptime=1h19m42s50ms last-started=2026-07-03 14:37:31 prefix-count=1 
 
  3 E name="to-bgw-02-t1-1" 
      remote.address=100.2.1.0 .as=65006 .id=100.2.2.0 .capabilities=mp,rr,gr,as4,ap,err .afi=ip .hold-time=9s .messages=23 .bytes=680 .gr-time=300 .eor=ip 
      local.address=100.2.1.1 .as=65100 .id=10.1.3.1 .cluster-id=10.1.3.1 .capabilities=mp,rr,gr,as4 .afi=ip .messages=17 .bytes=472 .eor="" 
      output.procid=23 .default-originate=always 
      input.procid=23 ebgp 
-     hold-time=9s keepalive-time=3s uptime=39s360ms last-started=2026-03-05 20:21:00 prefix-count=5
+     hold-time=9s keepalive-time=3s uptime=1h19m41s36ms last-started=2026-07-03 14:37:31 prefix-count=5
 
 Результат: 4 BGP сессии established;
 
