@@ -1,0 +1,133 @@
+bgw-02#sh run
+! Command: show running-config
+! device: bgw-02 (vEOS-lab, EOS-4.33.1F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+no aaa root
+!
+no service interface inactive port-id allocation disabled
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname bgw-02
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance ten-1
+!
+vrf instance ten-2
+!
+interface Ethernet1
+   description Link to Spine-01
+   no switchport
+   ip address 10.101.1.10/31
+!
+interface Ethernet2
+   description Link to Spine-02
+   no switchport
+   ip address 10.101.2.10/31
+!
+interface Ethernet3
+   description Trunk link to Mikrotik-RT1
+   no switchport
+!
+interface Ethernet3.10
+   description ten-1 transit to Mikrotik-RT1
+   encapsulation dot1q vlan 10
+   vrf ten-1
+   ip address 100.2.1.0/31
+!
+interface Ethernet3.20
+   description ten-2 transit to Mikrotik-RT1
+   encapsulation dot1q vlan 20
+   vrf ten-2
+   ip address 100.2.2.0/31
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Loopback0
+   description Router-ID / VTEP
+   ip address 10.1.1.6/32
+!
+interface Management1
+!
+interface Vxlan1
+   vxlan source-interface Loopback0
+   vxlan udp-port 4789
+   vxlan vrf ten-1 vni 50001
+   vxlan vrf ten-2 vni 50002
+   vxlan learn-restrict any
+!
+ip routing
+ip routing vrf ten-1
+ip routing vrf ten-2
+!
+router bgp 65006
+   router-id 10.1.1.6
+   maximum-paths 2 ecmp 2
+   neighbor SPINE peer group
+   neighbor SPINE bfd
+   neighbor SPINE timers 3 9
+   neighbor SPINE send-community extended
+   neighbor 10.101.1.11 peer group SPINE
+   neighbor 10.101.1.11 remote-as 65000
+   neighbor 10.101.1.11 description Spine-01
+   neighbor 10.101.2.11 peer group SPINE
+   neighbor 10.101.2.11 remote-as 65000
+   neighbor 10.101.2.11 description Spine-02
+   !
+   address-family evpn
+      neighbor SPINE activate
+   !
+   address-family ipv4
+      neighbor SPINE activate
+   !
+   vrf ten-1
+      rd 10.1.1.6:50001
+      route-target import evpn 1:50001
+      route-target export evpn 1:50001
+      neighbor 100.2.1.1 remote-as 65100
+      neighbor 100.2.1.1 description Mikrotik-RT1-ten-1
+      neighbor 100.2.1.1 timers 3 9
+      !
+      address-family ipv4
+         neighbor 100.2.1.1 activate
+         redistribute connected
+   !
+   vrf ten-2
+      rd 10.1.1.6:50002
+      route-target import evpn 2:50002
+      route-target export evpn 2:50002
+      neighbor 100.2.2.1 remote-as 65100
+      neighbor 100.2.2.1 description Mikrotik-RT1-ten-2
+      neighbor 100.2.2.1 timers 3 9
+      !
+      address-family ipv4
+         neighbor 100.2.2.1 activate
+         network 10.1.1.6/32
+         redistribute connected
+!
+router multicast
+   ipv4
+      software-forwarding kernel
+   !
+   ipv6
+      software-forwarding kernel
+!
+end
+bgw-02#
