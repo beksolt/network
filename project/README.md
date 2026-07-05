@@ -719,7 +719,7 @@ AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Li
 
 PC-2> sh ip
 
-NAME        : VPCS[1]
+NAME        : PC-2
 IP/MASK     : 10.0.10.3/24
 GATEWAY     : 10.0.10.1
 DNS         : 
@@ -736,9 +736,9 @@ PC-2> ping 10.0.10.2
 84 bytes from 10.0.10.2 icmp_seq=4 ttl=64 time=7.239 ms
 84 bytes from 10.0.10.2 icmp_seq=5 ttl=64 time=6.407 ms
 
-VPCS> sh ip 
+PC-1> sh ip 
 
-NAME        : VPCS[1]
+NAME        : PC-1
 IP/MASK     : 10.0.10.2/24
 GATEWAY     : 10.0.10.1
 DNS         : 
