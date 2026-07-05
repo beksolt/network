@@ -621,6 +621,7 @@ end
 ```
 
 </details>
+
 ### Проверка связности
 ```cisco
 dc1-leaf#sh bgp evpn route-type mac-ip
