@@ -654,6 +654,32 @@ Neighbor             AS Session State AFI/SAFI                AFI/SAFI State   N
 
 
 
+dc2-leaf#sh bgp evpn summary
+BGP summary information for VRF default
+Router identifier 21.1.1.1, local AS number 65200
+Neighbor Status Codes: m - Under maintenance
+  Neighbor     V AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+  210.10.10.10 4 65200            126       138    0    0 01:37:48 Estab   4      4
+ dc2-leaf#sh bgp evpn route-type mac-ip
+BGP routing table information for VRF default
+Router identifier 21.1.1.1, local AS number 65200
+Route status codes: * - valid, > - active, S - Stale, E - ECMP head, e - ECMP
+                    c - Contributing to ECMP, % - Pending best path selection
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+          Network                Next Hop              Metric  LocPref Weight  Path
+ * >      RD: 24.4.4.4:10010 mac-ip 0050.7966.6824
+                                 200.200.200.200       -       100     0       65100 i Or-ID: 24.4.4.4 C-LST: 210.10.10.10
+ * >      RD: 24.4.4.4:10010 mac-ip 0050.7966.6824 10.0.10.2
+                                 200.200.200.200       -       100     0       65100 i Or-ID: 24.4.4.4 C-LST: 210.10.10.10
+ * >      RD: 21.1.1.1:10010 mac-ip 0050.7966.6825
+                                 -                     -       -       0       i
+ * >      RD: 21.1.1.1:10010 mac-ip 0050.7966.6825 10.0.10.3
+                                 -                     -       -       0       i
+
+
+
 
 dc2-bgw# sh bgp su
 BGP summary information for VRF default
